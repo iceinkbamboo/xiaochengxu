@@ -26,7 +26,9 @@ url?key=1&value=2
 ```
 
 ```
-二、UI组件
-vant
+三、第三方库
+1、vant
 地址：https://youzan.github.io/vant-weapp/#/intro
+2、wxParse
+https://github.com/icindy/wxParse
 ```
