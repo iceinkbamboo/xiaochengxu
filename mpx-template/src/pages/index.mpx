@@ -1,0 +1,85 @@
+<template>
+  <view class="main">
+    <list></list>
+    <view class="main-tip">{{ tip }}</view>
+    <view class="main-btn" bindtap="change">点击改变</view>
+    <view class="main-tip">{{ "当前环境的appid:" + appid }}</view>
+    <view class="main-btn" bindtap="changeStore">点击store数据</view>
+  </view>
+</template>
+
+<script>
+  import { createPage } from '@mpxjs/core'
+  import mpx from '@mpxjs/core'
+
+  createPage({
+    data: {
+      tip: 'hello',
+      appid: ''
+    },
+    onLoad () {
+      // 请求接口方式，只是列子，接口不可用
+      // 需要在调试工具中勾选"不校验合法域名"
+      mpx.$api.getRequest().then(res => {
+        console.log('请求结果', res)
+      })
+
+      // 获取data数据
+      console.log('获取数据', this.tip)
+
+      // 调用API的方式，以存储cookie为例
+      mpx.setStorageSync('key', '1')
+      let key = mpx.getStorageSync('key')
+      console.log('key', key)
+      
+      // 获取store里面的数据
+      this.appid = mpx.$store.state.appid
+    },
+    change() {
+      // 赋值，改变视图的方式
+      this.tip = "world"
+    },
+    changeStore() {
+      // 改变store中appid的值，此时该页面的appid不会改变
+      mpx.$store.commit('update', {
+        appid: '1001'
+      })
+      console.log(mpx.$store.state.appid)
+
+      // 赋值，改变本页面的appid
+      this.appid = mpx.$store.state.appid
+    }
+  })
+</script>
+
+<style lang="less">
+  .main {
+    width: 100%;
+    &-tip {
+      width: 100%;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      color: blue;
+      margin: 0 auto;
+    }
+    &-btn {
+      width: 100%;
+      padding: 0 20px;
+      height: 40px;
+      line-height: 40px;
+      margin: 0 auto;
+      text-align: center;
+      background: linear-gradient(90deg, #ff5c36, #f13232);
+      color: #ffffff;
+    }
+  }
+</style>
+
+<script type="application/json">
+  {
+    "usingComponents": {
+      "list": "../components/list"
+    }
+  }
+</script>

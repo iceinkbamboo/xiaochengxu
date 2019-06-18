@@ -1,0 +1,15 @@
+{
+  "compileType": "miniprogram",
+  "setting": {
+    "newFeature": true,
+    "urlCheck": true,
+    "es6": false,
+    "postcss": true,
+    "minified": false,
+    "autoAudits": false
+  },
+  "appid": "wxeaf2f625d9601d9b",
+  "projectname": "mpx-template",
+  "description": "mpx框架使用",
+  "condition": {}
+}
